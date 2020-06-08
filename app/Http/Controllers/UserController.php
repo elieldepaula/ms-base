@@ -13,8 +13,11 @@ class UserController extends Controller
      */
     protected $user;
 
+//    protected $request;
+
     public function __construct(UserRepository $user)
     {
+//        $this->request = $request;
         $this->user = $user;
     }
 

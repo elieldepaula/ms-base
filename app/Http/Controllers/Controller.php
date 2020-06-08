@@ -2,25 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
 
-    /**
-     * @var Request
-     */
-    public $request;
-
-    function __construct(Request $request)
+    function __construct()
     {
-        $this->request = $request;
-    }
-
-    public function input($key = '')
-    {
-        return $this->request->input($key);
+        // ...
     }
 
     /**

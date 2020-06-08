@@ -1,14 +1,15 @@
 <?php
 
-
 namespace App\Repository;
-
 
 use App\Models\User;
 
 class UserRepository
 {
 
+    /**
+     * @var User
+     */
     protected $user;
 
     public function __construct(User $user)
@@ -17,37 +18,88 @@ class UserRepository
     }
 
     /**
+     * Return a list of users.
+     *
+     * @todo Implementar critérios de filtro.
      * @return User[]|\Illuminate\Database\Eloquent\Collection
+     * @throws \Exception
      */
     public function getCollection()
     {
-        $users = $this->user::all();
-        return $users;
+        try {
+            return $this->user->all();
+        } catch (\Exception $ex) {
+            throw new \Exception('Failed to get user list.');
+        }
     }
 
     /**
+     * Return a user by ID.
+     *
      * @param int $id
      * @return mixed
+     * @throws \Exception
      */
     public function read(int $id)
     {
-        return $this->user::find($id);
+        try {
+            return $this->user::find($id);
+        } catch (\Exception $ex) {
+            throw new \Exception('Failed to get user.');
+        }
     }
 
-    public function create($var)
+    /**
+     * Create and return a user.
+     *
+     * @param array $data
+     * @return mixed
+     * @throws \Exception
+     */
+    public function create(array $data)
     {
-        return $this->user->create($var);
+        try {
+            return $this->user->create($data);
+        } catch (\Exception $ex) {
+            throw new \Exception('Failed to create user.');
+        }
     }
 
-    public function update($id, $var)
+    /**
+     * Update and return a user object.
+     *
+     * @param int $id
+     * @param array $data
+     * @return mixed
+     * @throws \Exception
+     */
+    public function update(int $id, array $data)
     {
-        return $this->user->where('id', $id)->update($var);
+        try {
+            $this->user->where('id', $id)->update($data);
+            return $this->user->find($id);
+        } catch (\Exception $ex) {
+            throw new \Exception('Failed to update user.');
+        }
     }
 
+    /**
+     * Ddelete a user.
+     *
+     * @param int $id
+     * @return mixed
+     * @throws \Exception
+     */
     public function delete(int $id)
     {
-        $user = $this->user->find($id);
-        return $user->delete();
+        try {
+            if (!$this->user->destroy($id)) {
+                throw new \Exception('Failed to delete user.');
+            }
+            return "User deleted";
+        } catch (\Exception $ex) {
+            throw new \Exception('Failed to delete user.');
+        }
     }
 
 }

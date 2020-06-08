@@ -17,14 +17,9 @@ $router->get('/', function () use ($router) {
 });
 
 // Crud example
-$router->get('/user', 'UserController@index');
-$router->get('/user/{id}', 'UserController@read');
-$router->post('/user', 'UserController@create');
-$router->put('/user/{id}', 'UserController@update');
-$router->delete('/user/{id}', 'UserController@delete');
-
-
-//$router->get('/teste', 'MainController@index');
-//$router->get('/user', 'MainController@users');
-//$router->post('/user', 'MainController@create');
+$router->get('/user',           'UserController@index');
+$router->get('/user/{id}',      'UserController@read');
+$router->post('/user',          'UserController@create');
+$router->put('/user/{id}',      'UserController@update');
+$router->delete('/user/{id}',   'UserController@delete');
 

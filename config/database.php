@@ -11,10 +11,10 @@ return [
             'password' => env('DB_PASSWORD'),
             'charset'   => 'utf8',
             'collation' => 'utf8_general_ci',
-//            'strict' => true,
-//            'prefix' => '',
-//            'prefix_indexes' => true,
-//            'engine' => null,
+            'strict' => true,
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'engine' => null,
         ]
     ]
 ];
